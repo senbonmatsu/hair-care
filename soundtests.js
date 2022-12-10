@@ -34,7 +34,7 @@ function startWaveAnimation() {
 
   var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   var source;
-  var stream;
+  // var stream;
 
   // grab the mute button to use below
 
@@ -52,32 +52,9 @@ function startWaveAnimation() {
   var biquadFilter = audioCtx.createBiquadFilter();
   var convolver = audioCtx.createConvolver();
 
-  function makeDistortionCurve(amount) {
-    var k = typeof amount === 'number' ? amount : 50,
-      n_samples = 44100,
-      curve = new Float32Array(n_samples),
-      deg = Math.PI / 180,
-      i = 0,
-      x;
-    for ( ; i < n_samples; ++i ) {
-      x = i * 2 / n_samples - 1;
-      curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-    }
-    return curve;
-  };
 
   // set up canvas context for visualizer
 
-  var canvas = document.querySelector('.visualizer');
-  var canvasCtx = canvas.getContext("2d");
-
-  var intendedWidth = document.querySelector('.wrapper').clientWidth;
-
-  canvas.setAttribute('width',intendedWidth);
-
-  var visualSelect = document.getElementById("visual");
-
-  var drawVisual;
 
   //main block for doing the audio recording
 
@@ -87,16 +64,15 @@ function startWaveAnimation() {
      navigator.mediaDevices.getUserMedia (constraints)
         .then(
           function(stream) {
-             source = audioCtx.createMediaStreamSource(stream);
-             source.connect(distortion);
-             distortion.connect(biquadFilter);
-             biquadFilter.connect(gainNode);
-             convolver.connect(gainNode);
-             gainNode.connect(analyser);
-             analyser.connect(audioCtx.destination);
+            source = audioCtx.createMediaStreamSource(stream);
+            source.connect(distortion);
+            distortion.connect(biquadFilter);
+            biquadFilter.connect(gainNode);
+            convolver.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioCtx.destination);
 
-             visualize();
-             voiceChange();
+            visualize();
         })
         .catch( function(err) { console.log('The following gUM error occured: ' + err);})
   } else {
@@ -104,76 +80,35 @@ function startWaveAnimation() {
   }
 
   function visualize() {
-    WIDTH = canvas.width;
-    HEIGHT = canvas.height;
 
 
-      analyser.fftSize = 256;
+      analyser.fftSize = 2048;
       var bufferLengthAlt = analyser.frequencyBinCount;
       console.log(bufferLengthAlt);
       var dataArrayAlt = new Uint8Array(bufferLengthAlt);
+      let img = document.getElementById("image_place");
+      let idx=1;
 
-      canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
       var drawAlt = function() {
         drawVisual = requestAnimationFrame(drawAlt);
 
-        analyser.getByteFrequencyData(dataArrayAlt);
-
-        canvasCtx.fillStyle = '#fff';
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-        var barWidth = 20; //一本一本のバー横幅はここでpx指定
-        var barHeight;
-        var x = 0;
+        analyser.getByteFrequencyData(dataArrayAlt);//50~300くらいの周波数がほしい
 
         for(var i = 0; i < bufferLengthAlt; i++) {
-          barHeight = barColor = dataArrayAlt[i];
-          canvasCtx.fillStyle = barColer(barHeight);
-          canvasCtx.fillRect(x,HEIGHT-barHeight/2,barWidth,barHeight/2);
+          if (dataArrayAlt[2] > 10 ){
+            idx=2;
+          }else{
+            idx=1;
+          }
+          img.src="./images/image"+idx+".png";
+          console.log(dataArrayAlt[i]);
 
-          x += barWidth + 1;
         }
       };
 
       drawAlt();
   }
 
-  function barColer(barHeight){ //ピンク色にしてねっていう依頼があったため
-    var barColor = 'rgb(255, ' + (200 - barHeight) + '  ,177)';
-    if(barHeight > 200 || (200 - barHeight) < 0){
-       barColor = 'rgb(255,157,207)';
-    }
-    return barColor
-  }
-
-
-  function voiceChange() {
-
-    distortion.oversample = '4x';
-    biquadFilter.gain.setTargetAtTime(0, audioCtx.currentTime, 0)
-
-    var voiceSetting = voiceSelect.value;
-    console.log(voiceSetting);
-
-    //when convolver is selected it is connected back into the audio path
-    if(voiceSetting == "convolver") {
-      biquadFilter.disconnect(0);
-      biquadFilter.connect(convolver);
-    } else {
-      biquadFilter.disconnect(0);
-      biquadFilter.connect(gainNode);
-
-      if(voiceSetting == "distortion") {
-        distortion.curve = makeDistortionCurve(400);
-      } else if(voiceSetting == "biquad") {
-        biquadFilter.type = "lowshelf";
-        biquadFilter.frequency.setTargetAtTime(1000, audioCtx.currentTime, 0)
-        biquadFilter.gain.setTargetAtTime(25, audioCtx.currentTime, 0)
-      } else if(voiceSetting == "off") {
-        console.log("Voice settings turned off");
-      }
-    }
-  }
 
 }
