@@ -1,0 +1,39 @@
+これさっき作ろうとした部分で
+<!DOCTYPE html>
+<head></head>
+<html>
+<body>
+    <font size="+2">タイトル</font>
+    <font size="+4">START</font>
+</body>
+</html>
+
+これがその前にしてたやつ
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { padding: 0; margin: 0; }
+    canvas { background: #eee; display: block; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="375" height="675"></canvas>
+
+<script>
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");
+  
+  //Youtubeを組み込む場所（後で掲示板の画像とってきたい）
+  ctx.beginPath();
+  ctx.rect(20, 400, 335, 255);
+  ctx.fillStyle = "#FF0000";
+  ctx.fill();
+  ctx.closePath();
+
+</script>
+
+</body>
+</html>
