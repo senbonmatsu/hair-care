@@ -1,0 +1,34 @@
+
+
+これがその前にしてたやつ
+<!DOCTYPE html>
+<!-- 日本語にしておきます -->
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <style>
+        * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; position:relative}
+        /*youtube部分のCSS追加*/
+        .youtube{
+            background-color: #eee;   /* 背景色指定 */
+            position: absolute;          /* 位置指定 */
+            top: 50%;                    /* 親要素の半分下にずらす */
+            left: 50%;                   /* 親要素の半分右にずらす */
+            transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="375" height="675"></canvas>
+<!-- youtubeの埋め込みについて -->
+<div class="youtube">
+    <canvas id="player" width="375" height="675"></canvas>
+</div>
+
+<script src="youtube2.js"></script>
+
+
+</body>
+</html>
