@@ -1,5 +1,9 @@
 let start = document.getElementById('startWave');//get...htmlから一致したidをひろってくる
-start.onclick = startWaveAnimation;
+var events = "click";
+document.addEventListener(events,function(){
+  startWaveAnimation();
+})
+
 
 function startWaveAnimation() {
   // Older browsers might not implement mediaDevices at all, so we set an empty object first
