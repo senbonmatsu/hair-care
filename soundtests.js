@@ -70,7 +70,7 @@ function startWaveAnimation() {
             biquadFilter.connect(gainNode);
             convolver.connect(gainNode);
             gainNode.connect(analyser);
-            analyser.connect(audioCtx.destination);
+            // analyser.connect(audioCtx.destination);
 
             visualize();
         })
@@ -88,23 +88,32 @@ function startWaveAnimation() {
       var dataArrayAlt = new Uint8Array(bufferLengthAlt);
       let img = document.getElementById("image_place");
       let idx=1;
+      var wash=0;
 
 
       var drawAlt = function() {
         drawVisual = requestAnimationFrame(drawAlt);
 
-        analyser.getByteFrequencyData(dataArrayAlt);//50~300くらいの周波数がほしい
+        analyser.getByteFrequencyData(dataArrayAlt);//150~350くらいの周波数がほしい
 
         for(var i = 0; i < bufferLengthAlt; i++) {
-          if (dataArrayAlt[2] > 10 ){
+          if(wash>=1200000){
+            idx=3;
+            console.log('end')
+            img.src="./images/image"+idx+".png";
+            break;
+          }if (dataArrayAlt[7] > 20 ||dataArrayAlt[8] > 20 ||dataArrayAlt[9] > 20 ||dataArrayAlt[10] > 20 ||dataArrayAlt[11] > 20 ||dataArrayAlt[12] > 20 ||dataArrayAlt[13] > 20 ||dataArrayAlt[14] > 20 ||dataArrayAlt[15] > 20 ||dataArrayAlt[16] > 20 ){
             idx=2;
+            wash += 1;
+            console.log(wash)
           }else{
             idx=1;
           }
           img.src="./images/image"+idx+".png";
-          console.log(dataArrayAlt[i]);
+          //console.log(dataArrayAlt);
 
         }
+        
       };
 
       drawAlt();

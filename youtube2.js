@@ -7,12 +7,17 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
+var videoids = new Array('9dCU_QAIDrU','TfP3QRN3KdI','HgcAFsH5Y8w');
+var min = 0 ;
+var max = 2 ;
+
+var a = Math.floor( Math.random() * (max + 1 - min) ) + min ;
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '207',//縦横調整はここから
     width: '369',
-    videoId: '65Smh8rwdJI',
+    videoId: videoids[a],
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -30,10 +35,10 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 //var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    //done = true;
-  }
+  // if (event.data == YT.PlayerState.PLAYING && !done) {
+  //   setTimeout(stopVideo, 6000);
+  //   //done = true;
+  // }
 }
 function stopVideo() {
   player.pauseVideo();
