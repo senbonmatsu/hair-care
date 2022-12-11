@@ -7,7 +7,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
-var videoids = new Array('hUaVxNUCbc4','mq88yUFdVng','7gnmQFFiBok');
+var videoids = new Array('9dCU_QAIDrU','TfP3QRN3KdI','HgcAFsH5Y8w');
 var min = 0 ;
 var max = 2 ;
 
