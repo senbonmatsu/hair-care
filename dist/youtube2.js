@@ -19,7 +19,7 @@ function onYouTubeIframeAPIReady() {
     width: '369',
     videoId: videoids[a],
     events: {
-      'onReady': onPlayerReady,
+      //'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
     }
   });
