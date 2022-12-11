@@ -6,28 +6,80 @@
     <script src="youtube2.js"></script>
     <script src="soundtests.js"></script>
     <style>
-        * { padding: 0; margin: 0; }
-        canvas { background: #eee; display: block; margin: 0 auto; position:relative}
+        body{
+            background-image: url("gazou/haikei.jpeg");
+            z-index: 0;
+        }
         /*youtube部分のCSS追加*/
         .youtube{
             background-color: #eee;   /* 背景色指定 */
             position: absolute;          /* 位置指定 */
-            top: 50%;                    /* 親要素の半分下にずらす */
-            left: 50%;                   /* 親要素の半分右にずらす */
+            top: 130%;                    /* 親要素の半分下にずらす */
+            left: 70%;                   /* 親要素の半分右にずらす */
             transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
+            z-index: 30;
         }
+        div.imgs{
+            width: 200px;
+            height: 200px;
+            margin:auto;
+            top: 30%;
+            transform: translateY(-25%) translateX(-25%);
+
+        }
+        div.buttonimage {
+            position:relative;
+            display: inline-block;
+            font-size: 18px;
+            padding: 0.5em 1em 0.3em;
+            color: #ffffff;
+            border-radius: 25px;
+            background-color: #0099ff;
+            border: none;
+            cursor: pointer;
+            margin-right: 20px;
+            transform: translate(120%,600%);
+            text-align: center;
+            width: 375px;
+            height:2em;
+        }
+        /* .canvasgre{
+            background-color: aquamarine;
+            position:relative;
+            transform:translate(0%,50%);
+            z-index: 20;
+        } */
+        h3{
+            padding: 1rem 2rem;
+            border-left: 6px double #000;
+        }
+
+
 
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <img id="image_place" src="./images/image1.png">
-        <a id="startWave">始める</a>
+        <div class="imgs">
+            <img id="image_place" src="./images/image1.png">
+        </div>
+        <div class="buttonimage">
+            <button id="startWave">ドライヤーを始める</button>
+        </div>
+        
     </div>
-    <canvas id="mycanvas" width="375" height="675"></canvas>
+    <div class="canvasgre">
+        <canvas id="canvasgre" width="370" height="600">
+            <h3>hair✖️careの一言</h3>
+            <p>タオルドライは入念に（ゴシゴシはダメ!)</p>
+        </canvas>
+    </div>
+    
+        
+    </canvas>
 <!-- youtubeの埋め込みについて -->
-<div class="youtube">
-    <canvas id="player" width="375" height="675"></canvas>
+    <div class="youtube">
+        <canvas id="player" width="375" height="675"></canvas>
 </div>
 
 

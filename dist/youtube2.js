@@ -15,8 +15,8 @@ var a = Math.floor( Math.random() * (max + 1 - min) ) + min ;
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '207',//縦横調整はここから
-    width: '369',
+    height: '360',//縦横調整はここから
+    width: '640',
     videoId: videoids[a],
     events: {
       //'onReady': onPlayerReady,
