@@ -1,0 +1,33 @@
+#hair_care{
+    width: 40%;
+    height: 30%;
+    margin-right: 100%;
+    margin-bottom: 5%;
+    margin-top: 5%
+}
+
+#dryer{
+    width: 80%;
+    height: auto;
+}
+
+.flex_box{
+    display: flex;
+}
+
+h2{
+    text-align: center;
+}
+
+button{
+    width: 100px;
+    height: 2em;
+    text-align: center;
+
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+body{
+    background-image: url("gazou/haikei.jpeg");
+    margin: 0%;
+}
