@@ -1,0 +1,52 @@
+body{
+    background-image: url("gazou/haikei.jpeg");
+    margin: 0%;
+}
+
+h3{
+    font-family: 'Noto serif JP','serif';
+}
+
+.img{
+    width: 100%;
+    height: 25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#image_place{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#button_div{
+    margin: 5%;
+}
+
+#button{
+    font-family:  'Noto Serif JP', serif;
+}
+
+#player{
+    text-align: center;
+}
+
+.one-phrase{
+    margin: 2% auto;
+}
+
+#today{
+    text-align: left;
+    border-bottom: 4px solid black;
+}
+
+#niceday{
+    text-align: center;
+    border-top: 4px solid black;
+    margin-top: 1%;
+}
+
+footer{
+    border: 4px;
+}

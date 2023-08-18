@@ -1,5 +1,5 @@
 let start = document.getElementById('startWave');//get...htmlから一致したidをひろってくる
-var events = "click";
+let events = "click";
 document.addEventListener(events,function(){
   startWaveAnimation();
 })
