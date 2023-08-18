@@ -1,33 +1,52 @@
 #hair_care{
-    width: 40%;
-    height: 30%;
+    width: 30%;
+    height: 20%;
     margin-right: 100%;
-    margin-bottom: 5%;
-    margin-top: 5%
+    margin-bottom: 2%;
+    margin-top: 2%
 }
 
 #dryer{
-    width: 80%;
+    width: 100%;
     height: auto;
+    animation-name: fadeIn;
+    animation-duration: 4s;
+    animation-fill-mode:forwards;
 }
 
-.flex_box{
-    display: flex;
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+    }
+    to {
+    opacity: 1;
+    }
 }
 
 h2{
     text-align: center;
+    font-family: 'Noto Serif JP', serif;
 }
 
-button{
-    width: 100px;
-    height: 2em;
-    text-align: center;
-
-    padding: 0.5em;
-    border-radius: 0.5em;
+#center{
+    margin: auto;
+    animation-name: fadeIn;
+    animation-duration: 4s;
+    animation-fill-mode:forwards;
 }
+
+.button{
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#start_button{
+    font-family: 'Noto Serif JP', serif;
+}
+
 body{
     background-image: url("gazou/haikei.jpeg");
     margin: 0%;
 }
+
